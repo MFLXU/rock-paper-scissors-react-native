@@ -6,8 +6,9 @@ import {
   StyleSheet,
   Text,
   View,
+  Animated,
 } from "react-native";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function App() {
   const [playerChoice, setPlayerChoice] = useState(null);
