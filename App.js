@@ -1,11 +1,18 @@
 import { StatusBar } from "expo-status-bar";
-import { Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { useState } from "react";
 
 export default function App() {
   const [playerChoice, setPlayerChoice] = useState(null);
-  const [computerChocie, setComputerChocie] = useState(null);
-  const [result, setResult] = useState("");
+  const [computerChocie, setComputerChocie] = useState();
+  const [result, setResult] = useState("Start");
 
   const playerChoiceHandler = (choice) => {
     setPlayerChoice(choice);
@@ -17,13 +24,31 @@ export default function App() {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.mainTitleContainer}>
-        <Text style={styles.mainTitle}>Rock, Papers, Scissors</Text>
-      </View>
       <View style={styles.gameContainer}>
+        {/* Computer Choice*/}
+        <View style={styles.computerChoiceCon}>
+          <Text style={styles.playerChoice}>
+            {computerChocie === null ? null : computerChocie === "rock" ? (
+              <Image
+                style={styles.playerChoice}
+                source={require("./assets/rock.png")}
+              ></Image>
+            ) : computerChocie === "paper" ? (
+              <Image
+                style={styles.playerChoice}
+                source={require("./assets/paper.png")}
+              ></Image>
+            ) : computerChocie === "scissors" ? (
+              <Image
+                style={styles.playerChoice}
+                source={require("./assets/scissors.png")}
+              ></Image>
+            ) : null}
+          </Text>
+        </View>
         {/* Result */}
-        <View>
-          <Text>
+        <View style={styles.reslutsCon}>
+          <Text style={styles.results}>
             {playerChoice === computerChocie
               ? "Draw"
               : playerChoice === "rock" && computerChocie === "paper"
@@ -38,36 +63,27 @@ export default function App() {
               ? "Win"
               : playerChoice === "scissors" && computerChocie === "rock"
               ? "Loss"
-              : null}
-          </Text>
-        </View>
-        {/* Computer Choice*/}
-        <View style={styles.computerChoiceCon}>
-          <Text style={styles.playerChoice}>
-            {computerChocie === null
-              ? null
-              : computerChocie === "rock"
-              ? "🪨"
-              : computerChocie === "paper"
-              ? "📄"
-              : computerChocie === "scissors"
-              ? "✂"
-              : null}
+              : "Start"}
           </Text>
         </View>
         {/* Player Choice*/}
         <View style={styles.playerChoiceCon}>
-          <Text style={styles.playerChoice}>
-            {playerChoice === null
-              ? null
-              : playerChoice === "rock"
-              ? "🪨"
-              : playerChoice === "paper"
-              ? "📄"
-              : playerChoice === "scissors"
-              ? "✂"
-              : null}
-          </Text>
+          {playerChoice === null ? null : playerChoice === "rock" ? (
+            <Image
+              style={styles.playerChoice}
+              source={require("./assets/rock.png")}
+            ></Image>
+          ) : playerChoice === "paper" ? (
+            <Image
+              style={styles.playerChoice}
+              source={require("./assets/paper.png")}
+            ></Image>
+          ) : playerChoice === "scissors" ? (
+            <Image
+              style={styles.playerChoice}
+              source={require("./assets/scissors.png")}
+            ></Image>
+          ) : null}
         </View>
         {/* Player Buttons*/}
         <View style={styles.buttonsContainer}>
@@ -76,27 +92,33 @@ export default function App() {
               playerChoiceHandler("rock");
               computerChocieHandler();
             }}
-            style={styles.iconButton}
           >
-            <Text style={styles.icons}>🪨</Text>
+            <Image
+              style={styles.icons}
+              source={require("./assets/rock.png")}
+            ></Image>
           </Pressable>
           <Pressable
             onPress={() => {
               playerChoiceHandler("paper");
               computerChocieHandler();
             }}
-            style={styles.iconButton}
           >
-            <Text style={styles.icons}>📄</Text>
+            <Image
+              style={styles.icons}
+              source={require("./assets/paper.png")}
+            ></Image>
           </Pressable>
           <Pressable
             onPress={() => {
               playerChoiceHandler("scissors");
               computerChocieHandler();
             }}
-            style={styles.iconButton}
           >
-            <Text style={styles.icons}>✂</Text>
+            <Image
+              style={styles.icons}
+              source={require("./assets/scissors.png")}
+            ></Image>
           </Pressable>
         </View>
       </View>
@@ -108,7 +130,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "yellow",
+    backgroundColor: "#ffea00",
   },
   mainTitleContainer: {
     backgroundColor: "#000",
@@ -126,7 +148,7 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: "row",
     marginTop: "auto",
-    marginBottom: 50,
+    marginBottom: 80,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -139,19 +161,34 @@ const styles = StyleSheet.create({
     borderRadius: 999,
   },
   icons: {
-    fontSize: 40,
+    marginHorizontal: 5,
+
+    borderWidth: 1,
+    borderColor: "#000",
+    borderRadius: 999,
+    width: 100,
+    height: 100,
   },
   playerChoiceCon: {
-    marginTop: 100,
+    marginTop: 0,
     alignItems: "center",
     justifyContent: "center",
   },
   playerChoice: {
-    fontSize: 100,
+    width: 150,
+    height: 150,
   },
   computerChoiceCon: {
-    marginTop: 100,
+    marginTop: 150,
     alignItems: "center",
     justifyContent: "center",
+  },
+  reslutsCon: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  results: {
+    fontSize: 40,
+    fontWeight: "bold",
   },
 });
