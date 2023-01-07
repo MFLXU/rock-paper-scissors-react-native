@@ -4,8 +4,18 @@ import { useState } from "react";
 
 export default function App() {
   const [playerChoice, setPlayerChoice] = useState(null);
+  const [computerChocie, setComputerChocie] = useState();
+  const
   const playerChoiceHandler = (choice) => {
     setPlayerChoice(choice);
+  };
+  const computerChocieHandler = (playerChoice) => {
+    const choices = ["rock", "paper", "scissors"];
+    choices.forEach(choice => {
+      if(choice === playerChoice){
+
+      }
+    });
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -13,6 +23,10 @@ export default function App() {
         <Text style={styles.mainTitle}>Rock, Papers, Scissors</Text>
       </View>
       <View style={styles.gameContainer}>
+        {/* Computer Choice*/}
+        <View style={styles.computerChoiceCon}>
+          <Text style={styles.playerChoice}>🏎️</Text>
+        </View>
         {/* Player Choice*/}
         <View style={styles.playerChoiceCon}>
           <Text style={styles.playerChoice}>
@@ -88,19 +102,25 @@ const styles = StyleSheet.create({
   iconButton: {
     marginHorizontal: 5,
     padding: 10,
-    borderColor: "#000",
+    backgroundColor: "#fefefe",
     borderWidth: 1,
+    borderColor: "#eee",
     borderRadius: 999,
   },
   icons: {
     fontSize: 40,
   },
   playerChoiceCon: {
-    marginTop: 400,
+    marginTop: 100,
     alignItems: "center",
     justifyContent: "center",
   },
   playerChoice: {
-    fontSize: 70,
+    fontSize: 100,
+  },
+  computerChoiceCon: {
+    marginTop: 100,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
