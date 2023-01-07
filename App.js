@@ -4,18 +4,16 @@ import { useState } from "react";
 
 export default function App() {
   const [playerChoice, setPlayerChoice] = useState(null);
-  const [computerChocie, setComputerChocie] = useState();
-  const
+  const [computerChocie, setComputerChocie] = useState(null);
+  const [result, setResult] = useState("");
+
   const playerChoiceHandler = (choice) => {
     setPlayerChoice(choice);
   };
-  const computerChocieHandler = (playerChoice) => {
+  const computerChocieHandler = () => {
     const choices = ["rock", "paper", "scissors"];
-    choices.forEach(choice => {
-      if(choice === playerChoice){
-
-      }
-    });
+    let comChoice = Math.floor(Math.random() * 3);
+    setComputerChocie(choices[comChoice]);
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -23,9 +21,39 @@ export default function App() {
         <Text style={styles.mainTitle}>Rock, Papers, Scissors</Text>
       </View>
       <View style={styles.gameContainer}>
+        {/* Result */}
+        <View>
+          <Text>
+            {playerChoice === computerChocie
+              ? "Draw"
+              : playerChoice === "rock" && computerChocie === "paper"
+              ? "Loss"
+              : playerChoice === "rock" && computerChocie === "scissors"
+              ? "Win"
+              : playerChoice === "paper" && computerChocie === "scissors"
+              ? "Loss"
+              : playerChoice === "scissors" && computerChocie === "paper"
+              ? "Win"
+              : playerChoice === "paper" && computerChocie === "rock"
+              ? "Win"
+              : playerChoice === "scissors" && computerChocie === "rock"
+              ? "Loss"
+              : null}
+          </Text>
+        </View>
         {/* Computer Choice*/}
         <View style={styles.computerChoiceCon}>
-          <Text style={styles.playerChoice}>🏎️</Text>
+          <Text style={styles.playerChoice}>
+            {computerChocie === null
+              ? null
+              : computerChocie === "rock"
+              ? "🪨"
+              : computerChocie === "paper"
+              ? "📄"
+              : computerChocie === "scissors"
+              ? "✂"
+              : null}
+          </Text>
         </View>
         {/* Player Choice*/}
         <View style={styles.playerChoiceCon}>
@@ -46,6 +74,7 @@ export default function App() {
           <Pressable
             onPress={() => {
               playerChoiceHandler("rock");
+              computerChocieHandler();
             }}
             style={styles.iconButton}
           >
@@ -54,6 +83,7 @@ export default function App() {
           <Pressable
             onPress={() => {
               playerChoiceHandler("paper");
+              computerChocieHandler();
             }}
             style={styles.iconButton}
           >
@@ -62,6 +92,7 @@ export default function App() {
           <Pressable
             onPress={() => {
               playerChoiceHandler("scissors");
+              computerChocieHandler();
             }}
             style={styles.iconButton}
           >
@@ -77,7 +108,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "yellow",
   },
   mainTitleContainer: {
     backgroundColor: "#000",
