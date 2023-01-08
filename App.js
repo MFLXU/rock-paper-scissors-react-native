@@ -28,20 +28,20 @@ export default function App() {
       <View style={styles.gameContainer}>
         {/* Computer Choice*/}
         <View style={styles.computerChoiceCon}>
-          <Text style={styles.playerChoice}>
+          <Text style={styles.compChoice}>
             {computerChocie === null ? null : computerChocie === "rock" ? (
               <Image
-                style={styles.playerChoice}
+                style={styles.compChoice}
                 source={require("./assets/rock.png")}
               ></Image>
             ) : computerChocie === "paper" ? (
               <Image
-                style={styles.playerChoice}
+                style={styles.compChoice}
                 source={require("./assets/paper.png")}
               ></Image>
             ) : computerChocie === "scissors" ? (
               <Image
-                style={styles.playerChoice}
+                style={styles.compChoice}
                 source={require("./assets/scissors.png")}
               ></Image>
             ) : null}
@@ -176,6 +176,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   playerChoice: {
+    width: 150,
+    height: 150,
+    transform: [{ rotate: "90deg" }],
+  },
+  compChoice: {
     width: 150,
     height: 150,
   },
