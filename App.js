@@ -28,6 +28,7 @@ export default function App() {
       <View style={styles.gameContainer}>
         {/* Computer Choice*/}
         <View style={styles.computerChoiceCon}>
+          <Text style={styles.side}>Phone</Text>
           <Text style={styles.compChoice}>
             {computerChocie === null ? null : computerChocie === "rock" ? (
               <Image
@@ -85,7 +86,9 @@ export default function App() {
               source={require("./assets/scissors.png")}
             ></Image>
           ) : null}
+          <Text style={styles.side}>Player</Text>
         </View>
+
         {/* Player Buttons*/}
         <View style={styles.buttonsContainer}>
           <Pressable
@@ -148,8 +151,8 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flexDirection: "row",
-    marginTop: "auto",
     marginBottom: 80,
+    marginTop: 10,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -178,7 +181,6 @@ const styles = StyleSheet.create({
   playerChoice: {
     width: 150,
     height: 150,
-    transform: [{ rotate: "90deg" }],
   },
   compChoice: {
     width: 150,
@@ -194,7 +196,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   results: {
+    width: 200,
+    textAlign: "center",
+    backgroundColor: "#000",
+    color: "#fff",
     fontSize: 40,
     fontWeight: "bold",
+  },
+  side: {
+    width: 50,
+    marginVertical: 10,
+    borderRadius: 5,
+    textAlign: "center",
+    backgroundColor: "#000",
+    color: "#fff",
+    fontSize: 14,
   },
 });
